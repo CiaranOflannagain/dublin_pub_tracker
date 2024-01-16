@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dublin_pub_tracker/static/css/main.1369f6b4.css",
-    "main.js": "/dublin_pub_tracker/static/js/main.24f4d7b6.js",
+    "main.css": "/dublin_pub_tracker/static/css/main.18defcd5.css",
+    "main.js": "/dublin_pub_tracker/static/js/main.1ed8273c.js",
     "static/js/787.89d44e08.chunk.js": "/dublin_pub_tracker/static/js/787.89d44e08.chunk.js",
     "index.html": "/dublin_pub_tracker/index.html",
-    "main.1369f6b4.css.map": "/dublin_pub_tracker/static/css/main.1369f6b4.css.map",
-    "main.24f4d7b6.js.map": "/dublin_pub_tracker/static/js/main.24f4d7b6.js.map",
+    "main.18defcd5.css.map": "/dublin_pub_tracker/static/css/main.18defcd5.css.map",
+    "main.1ed8273c.js.map": "/dublin_pub_tracker/static/js/main.1ed8273c.js.map",
     "787.89d44e08.chunk.js.map": "/dublin_pub_tracker/static/js/787.89d44e08.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1369f6b4.css",
-    "static/js/main.24f4d7b6.js"
+    "static/css/main.18defcd5.css",
+    "static/js/main.1ed8273c.js"
   ]
 }

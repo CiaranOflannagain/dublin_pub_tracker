@@ -1,3 +1,4 @@
+/* Loading Beer Spinner */
 .loading-spinner {
   display: flex;
   justify-content: center;
@@ -20,44 +21,8 @@
     transform: rotate(-40deg); /* Rotate left by 40 degrees */
   }
 }
-/* Navbar styles */
-.navbar {
-  background-color: #333; /* Background color */
-  padding: 10px 0; /* Top and bottom padding */
-}
 
-.navbar ul {
-  list-style-type: none; /* Remove bullet points from the list */
-  margin: 0;
-  padding: 0;
-  text-align: center; /* Center-align the list items */
-}
 
-.navbar li {
-  display: inline;
-  margin-right: 20px; /* Add some space between the list items */
-}
-.nav-icons {
-  display: center;
-  list-style-type: none;
-  padding: 0;
-  margin-top: 10px; /* Adjust as needed */
-}
-
-.nav-icons li {
-  margin-right: 15px;
-}
-.navbar a {
-  text-decoration: none; /* Remove underlines from links */
-  color: #fff; /* Text color */
-  font-weight: bold; /* Make the text bold */
-  font-size: 16px; /* Font size */
-}
-
-/* Style the active link */
-.navbar a.active {
-  color: #ff5722; /* Change color for active link */
-}
 
 /* App.css */
 .button {
@@ -132,8 +97,8 @@ table {
 
 
 .google-form-container {
-  width: 100%;
-  max-width: 700px; 
+  width: 70%;
+  max-width: 200px; 
   margin: auto;
   padding: 15px;
 }

@@ -1,0 +1,23 @@
+/* Loading Beer Spinner */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh; /* Adjust as needed */
+  }
+  
+  .loading-spinner img {
+    width: 100px; /* Increase the width of the spinner */
+    height: 100px; /* Increase the height of the spinner */
+    animation: oscillate 1s linear infinite;
+     /* Add an oscillating animation */
+  }
+  
+  @keyframes oscillate {
+    0%, 100% {
+      transform: rotate(40deg); /* Rotate right by 40 degrees */
+    }
+    50% {
+      transform: rotate(-40deg); /* Rotate left by 40 degrees */
+    }
+  }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import guinnessIcon from './icons/guinness_icon.png';
-
+import './CSS Styles/NavBar.css';
+import './CSS Styles/LoadingWidget.css';
 function GoogleFormsEmbed() {
   const [loading, setLoading] = useState(true);
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import './CSS Styles/NavBar.css';
+import './CSS Styles/LoadingWidget.css';
 import guinnessIcon from './icons/guinness_icon.png';
 
 const GoogleSheetsTable = () => {
@@ -8,42 +10,12 @@ const GoogleSheetsTable = () => {
   const [uniqueValues, setUniqueValues] = useState({}); // Store unique values for each column
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({});
-  // Count of Pubs and Submissions
-  const [numOfPubs, setNumOfPubs] = useState(0);
-  const [numOfToBeApprovedSubmissions, setNumOfToBeApprovedSubmissions] = useState(0);
-  const [numOfTotalSubmissions, setNumOfTotalSubmissions] = useState(0);
-  const cathalsTable = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTyr_AtTh0JhgJSjN8zjvDeKnHVB7viIUHoKSzCHATSzpSZ4ECaPLGAToUFhOGORMIkDmyoEqO-5waO/pub?gid=1574508462&single=true&output=csv'
-
   useEffect(() => {
-    fetchNumbers();
+    
     fetchData();
   }, []);
 
-  const fetchNumbers = async () => {
-    try {
-      const response = await axios.get(cathalsTable);
-
-      // Parse the CSV data
-      // Cathal TODO: Clean the fuck out of this bit once it's working
-      const rows = response.data.split('\n');
-      const row1 = rows[0].split(','); // Assuming the CSV has a single row of values
-      const row2 = rows[1].split(','); // Assuming the CSV has a single row of values
-      const row3 = rows[2].split(','); // Assuming the CSV has a single row of values
-
-
-      // Extracting values from cells K1 and K2
-      const pubsValue = row1[10]; // Assuming K1 is the 11th column (zero-based index)
-      const totalSubmissionsValue = row2[10]; // Assuming K2 is the 12th column (zero-based index)
-      const toBeAapprovedSubmissionsValue = row3[10]; // Assuming K2 is the 12th column (zero-based index)
-      
-      setNumOfPubs(pubsValue);
-      setNumOfToBeApprovedSubmissions(toBeAapprovedSubmissionsValue);
-      setNumOfTotalSubmissions(totalSubmissionsValue)
-    } catch (error) {
-      console.error('Error fetching numbers:', error);
-    }
-  };
-
+  
 
   const fetchData = async () => {
     try {
@@ -82,10 +54,17 @@ const GoogleSheetsTable = () => {
   };
 
   const handleFilterChange = (header, value) => {
-    setFilters({
-      ...filters,
-      [header]: value.toLowerCase(),
-    });
+    // If sorting A-Z option is selected and the column is "Area Code"
+    if (value === 'A-Z' && header === 'Area Code') {
+      // Sort the data array by the "Area Code" column
+      setData([...data].sort((a, b) => (a[header] > b[header] ? 1 : -1)));
+    } else {
+      // Set the filter as usual
+      setFilters({
+        ...filters,
+        [header]: value.toLowerCase(),
+      });
+    }
   };
 
   if (loading) {
@@ -120,6 +99,8 @@ const GoogleSheetsTable = () => {
                   {uniqueValues[header].map((value, idx) => (
                     <option key={idx} value={value}>{value}</option>
                   ))}
+                  {/* Add the A-Z sorting option for the final column */}
+                  {header === 'Area Code' && <option value="A-Z">A-Z</option>}
                 </select>
               </th>
             ))}

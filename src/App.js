@@ -3,19 +3,40 @@ import GoogleSheetsTable from './GoogleSheetsTable';
 import GoogleFormsEmbed from './GoogleFormEmbed';
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import guinnessIcon from './icons/guinness_icon.png';
+import statsIcon from './icons/stats_icon.png';
+import beerIcon from './icons/beer_icon.png';
+import submitIcon from './icons/submit_icon.png';
 
 function NavigationBar() {
   return (
     <nav className="navbar">
-      <ul>
+      <ul className="nav-links">
         <li>
-          <NavLink to="/dublin_pub_tracker" activeClassName="active" end>Home</NavLink>
+          <NavLink to="/dublin_pub_tracker" activeClassName="active" end>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dublin_pub_tracker/pubstats" activeClassName="active">Pub Stats</NavLink>
+          <NavLink to="/dublin_pub_tracker/pubstats" activeClassName="active">
+            Guinness Stats
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dublin_pub_tracker/submission" activeClassName="active">Submit Pub Data</NavLink>
+          <NavLink to="/dublin_pub_tracker/submission" activeClassName="active">
+            Submit Pub Data
+          </NavLink>
+        </li>
+      </ul>
+      <ul className="nav-icons">
+        <li>
+          <img src={statsIcon} alt="Stats Icon" />
+        </li>
+        <li>
+          <img src={beerIcon} alt="Beer Icon" />
+        </li>
+        <li>
+          <img src={submitIcon} alt="Submit Icon" />
         </li>
       </ul>
     </nav>
@@ -45,22 +66,33 @@ function Submission() {
 
 function PubStats() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyr_AtTh0JhgJSjN8zjvDeKnHVB7viIUHoKSzCHATSzpSZ4ECaPLGAToUFhOGORMIkDmyoEqO-5waO/pub?gid=273829997&single=true&output=csv";
 
   useEffect(() => {
-    // Fetch data from the CSV link when the component mounts
-    fetch(csvUrl)
-      .then((response) => response.text())
-      .then((csvData) => {
-        // Parse the CSV data into an array of arrays
+    const fetchData = async () => {
+      try {
+        const response = await fetch(csvUrl);
+        const csvData = await response.text();
         const parsedData = csvData.split('\n').map((row) => row.split(','));
         setData(parsedData);
-      })
-      .catch((error) => {
+        setLoading(false); // Set loading to false after data fetching is complete
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+        setLoading(false); // Set loading to false in case of error
+      }
+    };
+
+    fetchData();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="loading-spinner">
+        <img src={guinnessIcon} alt="Loading..." />
+      </div>
+    );
+  }
   return (
     <div>
       <h1>Pub Statistics</h1>

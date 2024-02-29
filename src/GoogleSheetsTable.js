@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import guinnessIcon from './icons/guinness_icon.png';
 
 const GoogleSheetsTable = () => {
   const [data, setData] = useState([]);
@@ -88,19 +89,15 @@ const GoogleSheetsTable = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-spinner">
+        <img src={guinnessIcon} alt="Loading..." />
+      </div>
+    );
   }
 
   return (
     <div>
-      {/* Display the numbers above the table */}
-      {/*<div>
-        <p style={{ marginLeft: '20px', marginRight: '20px' }}>Count of Pubs: {numOfPubs}</p>
-        <p style={{ marginLeft: '20px', marginRight: '20px' }}>Total Submissions: {numOfTotalSubmissions}</p>
-        <p style={{ marginLeft: '20px', marginRight: '20px' }}>Total Submissions to be Approved: {numOfToBeApprovedSubmissions}</p>
-  </div> */}
-
-
       <table>
         <thead>
           {/* First row for column headers */}

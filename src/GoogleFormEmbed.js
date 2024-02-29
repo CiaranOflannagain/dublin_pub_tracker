@@ -4,7 +4,7 @@ function GoogleFormsEmbed() {
   return (
     <div>
       <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSegNQZQi2Hvt7bJs4hVEqfZaO4KF8BjIrle-PjvO5cSTC6nSw/viewform?usp=sf_link"
+        src="https://forms.gle/76uWNi7T6vMkeHwv9"
         width="100%"
         height="800px" // You can adjust the height as needed
         frameborder="0"
